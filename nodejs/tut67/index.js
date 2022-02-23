@@ -12,8 +12,23 @@ const server = http.createServer((req,res)=>{
     console.log(req.url);
     res.statuscode = 200;
     res.setHeader('Content-Type','text/html');
-    res.end(home);
-
+    url = req.url;
+    if (url == '/') {
+        res.end(home);
+    }
+    else if (url == '/about') {
+        res.end(about);
+    }
+    else if (url == '/contact') {
+        res.end(contact);
+    }
+    else if (url == '/services') {
+        res.end(services);
+    }
+    else {
+        res.statuscode = 404;
+        res.end("<h1>404 not found</h1>");
+    }
 });
 
 server.listen(port, hostname, () => {
